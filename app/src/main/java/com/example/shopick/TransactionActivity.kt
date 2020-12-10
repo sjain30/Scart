@@ -22,7 +22,7 @@ import java.util.*
 import javax.inject.Inject
 
 
-class TransactionActivity : AppCompatActivity(), PaymentResultListener{
+class TransactionActivity : AppCompatActivity(), PaymentResultListener {
 
     private lateinit var checkout: Checkout
 
@@ -49,20 +49,22 @@ class TransactionActivity : AppCompatActivity(), PaymentResultListener{
     }
 
     private fun scanCode() {
-        val intentIntegrator = IntentIntegrator(this)
-        intentIntegrator.captureActivity = CaptureAct::class.java
-        intentIntegrator.setOrientationLocked(false)
-        intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)
-        intentIntegrator.setPrompt("Scanning for Item")
-        intentIntegrator.setBeepEnabled(true)
-        intentIntegrator.initiateScan()
+        IntentIntegrator(this).apply {
+            captureActivity = CaptureAct::class.java
+            setOrientationLocked(false)
+            setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)
+            setPrompt("Press volume up for flash\nPress volume down to close the flash")
+            setBeepEnabled(true)
+            setBarcodeImageEnabled(true)
+            initiateScan()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
-        if(result != null){
-            if(result.contents != null){
+        if (result != null) {
+            if (result.contents != null) {
                 Toast.makeText(this, result.contents.toString(), Toast.LENGTH_SHORT).show()
             }
         }
@@ -89,9 +91,10 @@ class TransactionActivity : AppCompatActivity(), PaymentResultListener{
                     response: Response<OrderResponse>
                 ) {
                     if (response.isSuccessful) {
-                        Toast.makeText(this@TransactionActivity, "Success", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@TransactionActivity, "Success", Toast.LENGTH_SHORT)
+                            .show()
                         val orderId = response.body()?.id.toString()
-                        if(orderId.isNotEmpty()){
+                        if (orderId.isNotEmpty()) {
                             startPayment(orderId)
                         }
                     }
@@ -103,7 +106,7 @@ class TransactionActivity : AppCompatActivity(), PaymentResultListener{
             })
     }
 
-    private fun startPayment(orderId: String)  {
+    private fun startPayment(orderId: String) {
         /*
           You need to pass current activity in order to let Razorpay create CheckoutActivity
          */
