@@ -1,12 +1,14 @@
 package com.example.shopick
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Base64
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.shopick.dagger.DaggerShopickComponent
 import com.example.shopick.dagger.ShopickComponent
+import com.google.zxing.integration.android.IntentIntegrator
 import com.razorpay.Checkout
 import com.razorpay.PaymentResultListener
 import kotlinx.android.synthetic.main.activity_main.*
@@ -41,7 +43,28 @@ class TransactionActivity : AppCompatActivity(), PaymentResultListener{
 
 
         btn_checkout.setOnClickListener {
-            createOrder()
+//            createOrder()
+            scanCode()
+        }
+    }
+
+    private fun scanCode() {
+        val intentIntegrator = IntentIntegrator(this)
+        intentIntegrator.captureActivity = CaptureAct::class.java
+        intentIntegrator.setOrientationLocked(false)
+        intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)
+        intentIntegrator.setPrompt("Scanning for Item")
+        intentIntegrator.setBeepEnabled(true)
+        intentIntegrator.initiateScan()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+        if(result != null){
+            if(result.contents != null){
+                Toast.makeText(this, result.contents.toString(), Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
