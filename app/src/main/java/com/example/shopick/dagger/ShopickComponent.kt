@@ -1,11 +1,10 @@
 package com.example.shopick.dagger
 
-import com.example.shopick.MainActivity
+import com.example.shopick.TransactionActivity
 import dagger.Component
-import javax.inject.Inject
 
 @Component(modules = [NetworkModule::class])
 interface ShopickComponent {
 
-    fun injectCheckout(mainActivity: MainActivity)
+    fun injectCheckout(transactionActivity: TransactionActivity)
 }

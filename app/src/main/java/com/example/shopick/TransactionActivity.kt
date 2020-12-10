@@ -10,9 +10,6 @@ import com.example.shopick.dagger.ShopickComponent
 import com.razorpay.Checkout
 import com.razorpay.PaymentResultListener
 import kotlinx.android.synthetic.main.activity_main.*
-import okhttp3.Credentials
-import okhttp3.Request
-import okhttp3.Route
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,7 +20,7 @@ import java.util.*
 import javax.inject.Inject
 
 
-class MainActivity : AppCompatActivity(), PaymentResultListener{
+class TransactionActivity : AppCompatActivity(), PaymentResultListener{
 
     private lateinit var checkout: Checkout
 
@@ -44,8 +41,7 @@ class MainActivity : AppCompatActivity(), PaymentResultListener{
 
 
         btn_checkout.setOnClickListener {
-//            createOrder()
-            startPayment()
+            createOrder()
         }
     }
 
@@ -70,17 +66,21 @@ class MainActivity : AppCompatActivity(), PaymentResultListener{
                     response: Response<OrderResponse>
                 ) {
                     if (response.isSuccessful) {
-                        Toast.makeText(this@MainActivity, "Success", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@TransactionActivity, "Success", Toast.LENGTH_SHORT).show()
+                        val orderId = response.body()?.id.toString()
+                        if(orderId.isNotEmpty()){
+                            startPayment(orderId)
+                        }
                     }
                 }
 
                 override fun onFailure(call: Call<OrderResponse>, t: Throwable) {
-                    Toast.makeText(this@MainActivity, "Fail", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@TransactionActivity, "Fail", Toast.LENGTH_SHORT).show()
                 }
             })
     }
 
-    private fun startPayment()  {
+    private fun startPayment(orderId: String)  {
         /*
           You need to pass current activity in order to let Razorpay create CheckoutActivity
          */
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity(), PaymentResultListener{
             val options = JSONObject()
             options.put("name", "Razorpay Corp")
             options.put("description", "Demoing Charges")
-            options.put("order_id", "order_GBE5rSS3Nk0r1u")
+            options.put("order_id", orderId)
             //You can omit the image option to fetch the image from dashboard
             options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png")
             options.put("currency", "INR")
