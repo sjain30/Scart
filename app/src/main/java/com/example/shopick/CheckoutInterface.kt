@@ -1,5 +1,7 @@
 package com.example.shopick
 
+import com.example.shopick.datamodels.Order
+import com.example.shopick.datamodels.OrderResponse
 import retrofit2.Call
 import retrofit2.http.*
 

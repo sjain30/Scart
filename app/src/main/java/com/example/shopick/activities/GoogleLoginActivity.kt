@@ -1,10 +1,12 @@
-package com.example.shopick
+package com.example.shopick.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.example.shopick.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -66,6 +68,7 @@ class GoogleLoginActivity : AppCompatActivity() {
                 UpdateUI(account)
             }
         } catch (e: ApiException) {
+            Log.d("TAG", e.toString())
             Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show()
         }
     }

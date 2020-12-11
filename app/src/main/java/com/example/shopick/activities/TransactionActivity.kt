@@ -1,4 +1,4 @@
-package com.example.shopick
+package com.example.shopick.activities
 
 import android.app.Activity
 import android.content.Intent
@@ -6,8 +6,13 @@ import android.os.Bundle
 import android.util.Base64
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.shopick.CaptureAct
+import com.example.shopick.CheckoutInterface
+import com.example.shopick.R
 import com.example.shopick.dagger.DaggerShopickComponent
 import com.example.shopick.dagger.ShopickComponent
+import com.example.shopick.datamodels.Order
+import com.example.shopick.datamodels.OrderResponse
 import com.google.zxing.integration.android.IntentIntegrator
 import com.razorpay.Checkout
 import com.razorpay.PaymentResultListener
@@ -41,6 +46,10 @@ class TransactionActivity : AppCompatActivity(), PaymentResultListener {
         val component: ShopickComponent = DaggerShopickComponent.create()
         component.injectCheckout(this)
 
+        btn_shopping.setOnClickListener {
+            val intent = Intent(this,ShoppingList::class.java)
+            startActivity(intent)
+        }
 
         btn_checkout.setOnClickListener {
 //            createOrder()

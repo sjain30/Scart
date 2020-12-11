@@ -1,4 +1,4 @@
-package com.example.shopick
+package com.example.shopick.datamodels
 
 data class Order(
     val amount: Int,

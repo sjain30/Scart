@@ -17,8 +17,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Shopick">
-        <activity android:name=".TransactionActivity" />
-        <activity android:name=".GoogleLoginActivity">
+        <activity android:name=".activities.ShoppingList"></activity>
+        <activity android:name=".activities.TransactionActivity" />
+        <activity android:name=".activities.GoogleLoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
