@@ -17,6 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Shopick">
+        <activity android:name=".activities.CartActivity"></activity>
         <activity android:name=".activities.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,9 +27,7 @@
         </activity>
         <activity android:name=".activities.ShoppingList" />
         <activity android:name=".activities.TransactionActivity" />
-        <activity android:name=".activities.GoogleLoginActivity">
-
-        </activity>
+        <activity android:name=".activities.GoogleLoginActivity"></activity>
         <activity
             android:name=".CaptureAct"
             android:screenOrientation="portrait"
