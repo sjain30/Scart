@@ -31,7 +31,7 @@ class ShoppingList : AppCompatActivity() {
         shoppingListViewModel.getList().observe(this, Observer {
             recycler_list.setHasFixedSize(true)
             recycler_list.layoutManager = LinearLayoutManager(this)
-            val adapter = ListAdapter(it as java.util.ArrayList<String>, this@ShoppingList)
+            val adapter = ListAdapter(it as java.util.ArrayList<String>, this@ShoppingList, shoppingListViewModel)
             recycler_list.adapter = adapter
         })
 

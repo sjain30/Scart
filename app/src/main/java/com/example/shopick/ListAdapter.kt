@@ -12,7 +12,8 @@ import java.util.*
 
 class ListAdapter(
     private val subjects: ArrayList<String>,
-    private val context: Context
+    private val context: Context,
+    private val shoppingListViewModel: ShoppingListViewModel
 ) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,6 +31,9 @@ class ListAdapter(
                 holder.itemName.paintFlags = holder.itemName.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
             else
                 holder.itemName.paintFlags = holder.itemName.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+        }
+        holder.delete.setOnClickListener {
+            shoppingListViewModel.removeItem(subjects[position])
         }
     }
 

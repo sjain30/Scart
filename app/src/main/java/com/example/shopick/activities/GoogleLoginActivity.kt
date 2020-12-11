@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.example.shopick.R
+import com.example.shopick.utils.SavedSharedPreference
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -77,8 +78,8 @@ class GoogleLoginActivity : AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-//                SavedPreferences.SetEmail(this, account.email.toString())
-//                SavedPreferences.SetUsername(this, account.displayName.toString())
+                SavedSharedPreference.setEmail(this, account.email.toString())
+                SavedSharedPreference.setUsername(this, account.displayName.toString())
                 val intent = Intent(this, TransactionActivity::class.java)
                 startActivity(intent)
                 finish()
