@@ -19,6 +19,7 @@ class ShoppingList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shopping_list)
 
+
         shoppingListViewModel = ViewModelProvider(this).get(ShoppingListViewModel::class.java)
 
         shoppingListViewModel.getListItems().observe(this, Observer {

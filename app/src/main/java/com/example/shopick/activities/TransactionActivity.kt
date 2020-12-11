@@ -9,9 +9,12 @@ import android.view.View
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shopick.CaptureAct
 import com.example.shopick.CheckoutInterface
 import com.example.shopick.R
+import com.example.shopick.ShoppingListViewModel
 import com.example.shopick.dagger.DaggerShopickComponent
 import com.example.shopick.dagger.ShopickComponent
 import com.example.shopick.datamodels.Order
@@ -21,7 +24,9 @@ import com.google.zxing.integration.android.IntentIntegrator
 import com.razorpay.Checkout
 import com.razorpay.PaymentResultListener
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_shopping_list.*
 import kotlinx.android.synthetic.main.bottomsheet.*
+import kotlinx.android.synthetic.main.bottomsheet.recycler_list
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,20 +37,23 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
+import android.widget.ListAdapter as ListAdapter
 
 
 class TransactionActivity : AppCompatActivity(), PaymentResultListener {
 
     private lateinit var checkout: Checkout
     private var sheetBehavior: BottomSheetBehavior<RelativeLayout>? = null
+    private var listItems = ArrayList<String>()
 
+    lateinit var shoppingListViewModel: ShoppingListViewModel
     @Inject
     lateinit var retrofit: Retrofit
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        btn_checkout.visibility= View.VISIBLE
         Checkout.preload(applicationContext)
 
         checkout = Checkout()
@@ -58,34 +66,41 @@ class TransactionActivity : AppCompatActivity(), PaymentResultListener {
 //            createOrder()
             scanCode()
         }
+        setupFilterBottomSheet()
     }
 
     private fun setupFilterBottomSheet() {
         sheetBehavior = BottomSheetBehavior.from(bottomsheet)
 
-
         sheetBehavior?.isHideable = false
-
         /**
          * bottom sheet state change listener
          * we are changing button text when sheet changed state
          * */
-
         sheetBehavior?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
-
+                BottomSheetBehavior.STATE_EXPANDED
+                btn_checkout.visibility= View.INVISIBLE
             }
-
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 when (newState) {
                     BottomSheetBehavior.STATE_HIDDEN -> {
 
                     }
                     BottomSheetBehavior.STATE_EXPANDED -> {
+                        shoppingListViewModel = ViewModelProvider(this@TransactionActivity).get(ShoppingListViewModel::class.java)
+                        shoppingListViewModel.getListItems().observe(this@TransactionActivity,{
+                            recycler_list.setHasFixedSize(true)
+                            recycler_list.layoutManager= LinearLayoutManager(this@TransactionActivity)
+                            val adapter= BottomSheetAdapter(it as java.util.ArrayList<String>, this@TransactionActivity, shoppingListViewModel)
+                            recycler_list.adapter = adapter
+                            btn_checkout.visibility= View.INVISIBLE
+                        })
 
                     }
                     BottomSheetBehavior.STATE_COLLAPSED -> {
-
+                        BottomSheetBehavior.STATE_COLLAPSED
+                        btn_checkout.visibility= View.VISIBLE
                     }
                 }
             }
