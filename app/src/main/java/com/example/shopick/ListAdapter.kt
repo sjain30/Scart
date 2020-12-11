@@ -1,6 +1,8 @@
 package com.example.shopick
 
 import android.content.Context
+import android.graphics.Paint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +12,8 @@ import java.util.*
 
 class ListAdapter(
     private val subjects: ArrayList<String>,
-    private val context: Context) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+    private val context: Context
+) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
@@ -19,6 +22,15 @@ class ListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
+        holder.itemName.setText(subjects[position])
+        Log.d("TAG", "onBindViewHolder: ${subjects[position]}")
+
+        holder.checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked)
+                holder.itemName.paintFlags = holder.itemName.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+            else
+                holder.itemName.paintFlags = holder.itemName.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+        }
     }
 
 

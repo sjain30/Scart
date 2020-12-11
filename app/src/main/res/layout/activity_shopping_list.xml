@@ -11,23 +11,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/edt_name"/>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:id="@+id/edt_name"
-        app:layout_constraintTop_toBottomOf="@id/recycler_list"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_create_list"
-        app:layout_constraintTop_toBottomOf="@id/edt_name"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="Create"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/edt_name"
+        android:text="Add"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
