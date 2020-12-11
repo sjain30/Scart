@@ -17,13 +17,13 @@ class ShoppingListViewModel(application: Application) : AndroidViewModel(applica
     private val mDatabaseReference = FirebaseUtil.getDatabase().getReference("ShoppingList")
     var listItems:MutableLiveData<List<String>>?= null
 
-//    fun getListItems() : LiveData<List<String>> {
-//        if (listItems == null) {
-//            listItems = MutableLiveData()
-//            getList()
-//        }
-//        return listItems!!
-//    }
+    fun getListItems() : LiveData<List<String>> {
+        if (listItems == null) {
+            listItems = MutableLiveData()
+            getList()
+        }
+        return listItems!!
+    }
 
     fun getList() : LiveData<List<String>>{
 

@@ -1,31 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.TransactionActivity">
 
-    <Button
-        android:id="@+id/btn_shopping"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Shopping List"
-        app:layout_constraintBottom_toTopOf="@id/btn_checkout"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <android.widget.Button
         android:id="@+id/btn_checkout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Checkout"
-        android:gravity="center_vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:gravity="center_vertical" />
+
+    <include layout="@layout/bottomsheet"/>
 
 
 <!--    <androidx.coordinatorlayout.widget.CoordinatorLayout-->
@@ -43,10 +31,6 @@
 <!--            android:background="@color/purple_700"-->
 <!--            app:navigationIcon="@drawable/ic_baseline_arrow_drop_up_24" />-->
 
-    <include
-        layout="@layout/bottomsheet"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
 <!--    </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

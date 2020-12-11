@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.HomeActivity">
+
+    <LinearLayout
+        android:id = "@+id/choose_location"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:layout_marginStart = "8dp"
+        android:layout_marginTop = "8dp"
+        android:layout_marginEnd = "8dp"
+        android:background = "@drawable/ic_location"
+        android:orientation = "horizontal"
+        android:paddingStart = "12dp"
+        android:paddingTop = "6dp"
+        android:paddingEnd = "12dp"
+        android:paddingBottom = "6dp"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width = "18dp"
+            android:layout_height = "18dp"
+            android:layout_gravity = "center_vertical"
+            app:srcCompat = "@drawable/ic_location_pin" />
+
+        <TextView
+            android:id = "@+id/askques_loc_name"
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:layout_gravity = "center_vertical"
+            android:layout_marginStart = "6dp"
+            android:layout_marginBottom = "1dp"
+            android:text = "Choose Location"
+            android:textColor = "#323232"
+            android:textSize = "14sp" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id = "@+id/search_toolbar"
+        android:layout_width = "match_parent"
+        android:layout_height = "?android:attr/actionBarSize"
+        android:layout_marginTop = "12dp"
+        android:layout_marginBottom = "8dp"
+        app:contentInsetStartWithNavigation = "0dp"
+        app:layout_collapseMode = "pin"
+        android:focusableInTouchMode="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/choose_location"
+        app:popupTheme = "@style/ThemeOverlay.AppCompat.Light">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/search_textInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="14dp"
+            android:animateLayoutChanges="false"
+            android:background="#fbfbfb"
+            app:boxStrokeWidth="0dp"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/choose_location">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/search_textInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f5f5f6"
+                android:cursorVisible="true"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="18dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="Try searching a store"
+                android:imeOptions="actionSearch"
+                android:importantForAutofill="noExcludeDescendants"
+                android:inputType="textCapSentences|text|textNoSuggestions|textVisiblePassword"
+                android:lines="1"
+                android:maxLines="1"
+                android:textColor="#323232"
+                android:textColorHint="#BDBDBD"
+                android:textCursorDrawable="@drawable/cursor_edittext"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <ListView
+        android:id = "@+id/store_listing"
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:divider = "@null"
+        android:dividerHeight = "0dp"
+        app:layout_behavior = "@string/appbar_scrolling_view_behavior"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_toolbar"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/store_listing"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text= "Shopping List"
+        android:id="@+id/btn_shop"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_shop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Transaction Activity"
+        android:id="@+id/btn_transaction"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

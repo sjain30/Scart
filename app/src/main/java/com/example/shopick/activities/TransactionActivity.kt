@@ -1,9 +1,12 @@
 package com.example.shopick.activities
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Base64
+import android.view.View
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.shopick.CaptureAct
@@ -13,16 +16,20 @@ import com.example.shopick.dagger.DaggerShopickComponent
 import com.example.shopick.dagger.ShopickComponent
 import com.example.shopick.datamodels.Order
 import com.example.shopick.datamodels.OrderResponse
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.zxing.integration.android.IntentIntegrator
 import com.razorpay.Checkout
 import com.razorpay.PaymentResultListener
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.bottomsheet.*
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import java.io.UnsupportedEncodingException
+import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
@@ -30,6 +37,7 @@ import javax.inject.Inject
 class TransactionActivity : AppCompatActivity(), PaymentResultListener {
 
     private lateinit var checkout: Checkout
+    private var sheetBehavior: BottomSheetBehavior<RelativeLayout>? = null
 
     @Inject
     lateinit var retrofit: Retrofit
@@ -46,15 +54,43 @@ class TransactionActivity : AppCompatActivity(), PaymentResultListener {
         val component: ShopickComponent = DaggerShopickComponent.create()
         component.injectCheckout(this)
 
-        btn_shopping.setOnClickListener {
-            val intent = Intent(this,ShoppingList::class.java)
-            startActivity(intent)
-        }
-
         btn_checkout.setOnClickListener {
 //            createOrder()
             scanCode()
         }
+    }
+
+    private fun setupFilterBottomSheet() {
+        sheetBehavior = BottomSheetBehavior.from(bottomsheet)
+
+
+        sheetBehavior?.isHideable = false
+
+        /**
+         * bottom sheet state change listener
+         * we are changing button text when sheet changed state
+         * */
+
+        sheetBehavior?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+
+            }
+
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                when (newState) {
+                    BottomSheetBehavior.STATE_HIDDEN -> {
+
+                    }
+                    BottomSheetBehavior.STATE_EXPANDED -> {
+
+                    }
+                    BottomSheetBehavior.STATE_COLLAPSED -> {
+
+                    }
+                }
+            }
+
+        })
     }
 
     private fun scanCode() {
