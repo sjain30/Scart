@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "63009329403",
+    "project_id": "shopick-22035",
+    "storage_bucket": "shopick-22035.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:63009329403:android:d892f76600204618eee05e",
+        "android_client_info": {
+          "package_name": "com.example.shopick"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "63009329403-4eg56okrh4eqhlkeoi2j3etnsqbsiffq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shopick",
+            "certificate_hash": "5f16c3a6716f56610d97a5b81af804a592f5dfa9"
+          }
+        },
+        {
+          "client_id": "63009329403-9eusps7ehtnr8s243uvh9cbjoitlc85l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7Vw-gYWmvkMMtZtX15NnrTRFxUR1orD0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "63009329403-8erlnmh749nprgarkulto66ohgrmginj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
