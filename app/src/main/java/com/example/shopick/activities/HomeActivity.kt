@@ -28,10 +28,10 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        btn_transaction.setOnClickListener {
-            val intent = Intent(this,TransactionActivity::class.java)
-            startActivity(intent)
-        }
+//        btn_transaction.setOnClickListener {
+//            val intent = Intent(this,TransactionActivity::class.java)
+//            startActivity(intent)
+//        }
 
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         homeViewModel.getStoresList().observe(this, Observer {
@@ -39,6 +39,11 @@ class HomeActivity : AppCompatActivity() {
             storesList?.addAll(it)
             Log.d("TAG", "onCreate: $storesList")
         })
+
+        store_listing.setOnItemClickListener { parent, view, position, id ->
+            val intent = Intent(this,TransactionActivity::class.java)
+            startActivity(intent)
+        }
 
 
         search_textInputEditText.addTextChangedListener(object : TextWatcher {

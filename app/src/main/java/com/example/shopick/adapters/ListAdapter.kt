@@ -10,10 +10,11 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopick.R
 import com.example.shopick.ShoppingListViewModel
+import com.example.shopick.datamodels.Item
 import java.util.*
 
 class ListAdapter(
-    private val subjects: ArrayList<String>,
+    private val subjects: ArrayList<Item>,
     private val context: Context,
     private val shoppingListViewModel: ShoppingListViewModel
 ) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
@@ -25,14 +26,27 @@ class ListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.itemName.setText(subjects[position])
+        holder.itemName.setText(subjects[position].name)
         Log.d("TAG", "onBindViewHolder: ${subjects[position]}")
 
+        if (subjects[position].state!!) {
+            holder.checkBox.isChecked = true
+            holder.itemName.paintFlags = holder.itemName.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        }
+
         holder.checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked)
-                holder.itemName.paintFlags = holder.itemName.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-            else
-                holder.itemName.paintFlags = holder.itemName.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+            if (isChecked) {
+                subjects[position].state = isChecked
+                shoppingListViewModel.flashList(subjects)
+                holder.itemName.paintFlags =
+                    holder.itemName.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+            }
+            else {
+                subjects[position].state = isChecked
+                shoppingListViewModel.flashList(subjects)
+                holder.itemName.paintFlags =
+                    holder.itemName.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+            }
         }
         holder.delete.setOnClickListener {
             shoppingListViewModel.removeItem(subjects[position])

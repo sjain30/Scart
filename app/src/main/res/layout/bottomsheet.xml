@@ -7,20 +7,19 @@
     android:id="@+id/bottomsheet"
     android:orientation="vertical"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    app:behavior_peekHeight="120dp"
+    app:behavior_peekHeight="60dp"
     android:padding="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="60dp"
         android:id="@+id/bottom_header"
         android:background="@drawable/card_bg"
-        android:padding="10dp"
         android:layout_marginBottom="30dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="View My List"
+            android:text="Shopping List"
             android:textSize="30sp"
             android:textColor="@android:color/black"
             android:padding="10dp"/>

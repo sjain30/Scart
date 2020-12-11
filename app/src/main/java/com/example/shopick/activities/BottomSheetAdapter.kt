@@ -35,7 +35,7 @@ class BottomSheetAdapter(private val subjects: ArrayList<String>,
                 holder.itemName.paintFlags = holder.itemName.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
         }
         holder.delete.setOnClickListener {
-            shoppingListViewModel.removeItem(subjects[position])
+//            shoppingListViewModel.removeItem(subjects[position])
         }
     }
 

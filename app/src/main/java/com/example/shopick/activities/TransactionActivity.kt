@@ -1,7 +1,6 @@
 package com.example.shopick.activities
 
 import android.app.Activity
-import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Base64
@@ -17,6 +16,7 @@ import com.example.shopick.R
 import com.example.shopick.ShoppingListViewModel
 import com.example.shopick.dagger.DaggerShopickComponent
 import com.example.shopick.dagger.ShopickComponent
+import com.example.shopick.datamodels.Item
 import com.example.shopick.datamodels.Order
 import com.example.shopick.datamodels.OrderResponse
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -37,7 +37,7 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
-import android.widget.ListAdapter as ListAdapter
+import com.example.shopick.adapters.ListAdapter
 
 
 class TransactionActivity : AppCompatActivity(), PaymentResultListener {
@@ -54,6 +54,9 @@ class TransactionActivity : AppCompatActivity(), PaymentResultListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         btn_checkout.visibility= View.VISIBLE
+
+        shoppingListViewModel = ViewModelProvider(this@TransactionActivity).get(ShoppingListViewModel::class.java)
+
         Checkout.preload(applicationContext)
 
         checkout = Checkout()
@@ -88,11 +91,14 @@ class TransactionActivity : AppCompatActivity(), PaymentResultListener {
 
                     }
                     BottomSheetBehavior.STATE_EXPANDED -> {
-                        shoppingListViewModel = ViewModelProvider(this@TransactionActivity).get(ShoppingListViewModel::class.java)
                         shoppingListViewModel.getListItems().observe(this@TransactionActivity,{
                             recycler_list.setHasFixedSize(true)
                             recycler_list.layoutManager= LinearLayoutManager(this@TransactionActivity)
-                            val adapter= BottomSheetAdapter(it as java.util.ArrayList<String>, this@TransactionActivity, shoppingListViewModel)
+                            val adapter = ListAdapter(
+                                it as ArrayList<Item>,
+                                this@TransactionActivity,
+                                shoppingListViewModel
+                            )
                             recycler_list.adapter = adapter
                             btn_checkout.visibility= View.INVISIBLE
                         })

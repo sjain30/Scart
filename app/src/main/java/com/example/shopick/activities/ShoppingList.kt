@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shopick.adapters.ListAdapter
 import com.example.shopick.R
 import com.example.shopick.ShoppingListViewModel
+import com.example.shopick.datamodels.Item
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_shopping_list.*
 
@@ -25,7 +26,7 @@ class ShoppingList : AppCompatActivity() {
         shoppingListViewModel.getListItems().observe(this, Observer {
             recycler_list.setHasFixedSize(true)
             recycler_list.layoutManager = LinearLayoutManager(this)
-            val adapter = ListAdapter(it as java.util.ArrayList<String>, this@ShoppingList, shoppingListViewModel)
+            val adapter = ListAdapter(it as java.util.ArrayList<Item>, this@ShoppingList, shoppingListViewModel)
             recycler_list.adapter = adapter
         })
 

@@ -7,53 +7,53 @@
     tools:context=".activities.HomeActivity">
 
     <LinearLayout
-        android:id = "@+id/choose_location"
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:layout_marginStart = "8dp"
-        android:layout_marginTop = "8dp"
-        android:layout_marginEnd = "8dp"
-        android:background = "@drawable/ic_location"
-        android:orientation = "horizontal"
-        android:paddingStart = "12dp"
-        android:paddingTop = "6dp"
-        android:paddingEnd = "12dp"
-        android:paddingBottom = "6dp"
-        app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toTopOf = "parent">
+        android:id="@+id/choose_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/ic_location"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width = "18dp"
-            android:layout_height = "18dp"
-            android:layout_gravity = "center_vertical"
-            app:srcCompat = "@drawable/ic_location_pin" />
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center_vertical"
+            app:srcCompat="@drawable/ic_location_pin" />
 
         <TextView
-            android:id = "@+id/askques_loc_name"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:layout_gravity = "center_vertical"
-            android:layout_marginStart = "6dp"
-            android:layout_marginBottom = "1dp"
-            android:text = "Choose Location"
-            android:textColor = "#323232"
-            android:textSize = "14sp" />
+            android:id="@+id/askques_loc_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="6dp"
+            android:layout_marginBottom="1dp"
+            android:text="Choose Location"
+            android:textColor="#323232"
+            android:textSize="14sp" />
     </LinearLayout>
 
     <androidx.appcompat.widget.Toolbar
-        android:id = "@+id/search_toolbar"
-        android:layout_width = "match_parent"
-        android:layout_height = "?android:attr/actionBarSize"
-        android:layout_marginTop = "12dp"
-        android:layout_marginBottom = "8dp"
-        app:contentInsetStartWithNavigation = "0dp"
-        app:layout_collapseMode = "pin"
+        android:id="@+id/search_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
         android:focusableInTouchMode="true"
-        app:layout_constraintStart_toStartOf="parent"
+        app:contentInsetStartWithNavigation="0dp"
+        app:layout_collapseMode="pin"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/choose_location"
-        app:popupTheme = "@style/ThemeOverlay.AppCompat.Light">
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/search_textInputLayout"
@@ -95,31 +95,34 @@
     </androidx.appcompat.widget.Toolbar>
 
     <ListView
-        android:id = "@+id/store_listing"
-        android:layout_width = "match_parent"
-        android:layout_height = "wrap_content"
-        android:divider = "@null"
-        android:dividerHeight = "0dp"
-        app:layout_behavior = "@string/appbar_scrolling_view_behavior"
+        android:id="@+id/store_listing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_toolbar"/>
+        app:layout_constraintTop_toBottomOf="@id/search_toolbar" />
 
     <Button
+        android:id="@+id/btn_shop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/store_listing"
+        android:text="Shopping List"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text= "Shopping List"
-        android:id="@+id/btn_shop"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/store_listing" />
 
-    <Button
+    <TextView
+        android:id="@+id/btn_transaction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_shop"
+        android:ems="10"
+        android:text="To start Transaction Activity search big bazaar or more mega mart in search and click on it"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Transaction Activity"
-        android:id="@+id/btn_transaction"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_shop" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
