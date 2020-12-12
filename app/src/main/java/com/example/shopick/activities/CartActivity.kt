@@ -57,11 +57,12 @@ class CartActivity : AppCompatActivity(), PaymentResultListener {
         actionBar!!.setDisplayHomeAsUpEnabled(true)
 
         cartActivityViewModel.getListItems().observe(this,{
+            total = 0
             cartRecyle.layoutManager = LinearLayoutManager(this)
             val adapter = CartAdapter(this,it as ArrayList<Cart>,cartActivityViewModel)
             cartRecyle.adapter = adapter
             for(item in it){
-                total += item.price?.toInt()!!
+                total += item.price?.toInt()?.times(item.quantity?.toInt()!!)!!
             }
             txt_total_qty.text = "${it.size} item(s)"
             txt_total_amount.text = "Total: ₹$total/-"

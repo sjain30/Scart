@@ -49,7 +49,7 @@ class ScannedItemActivity : AppCompatActivity() {
 
     private fun flashCardList() {
         cartDatabaseReference.addListenerForSingleValueEvent(cartListener)
-        arrayList.add(Cart(product.productName.toString(),product.price.toString(),product.image.toString(),product.discount.toString(),product.cutPrice.toString(),"0",null))
+        arrayList.add(Cart(product.productName.toString(),product.price.toString(),product.image.toString(),product.discount.toString(),product.cutPrice.toString(),"1",null))
         cartDatabaseReference.setValue(arrayList).addOnSuccessListener {
             startActivity(Intent(this,CartActivity::class.java))
         }

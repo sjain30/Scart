@@ -54,6 +54,9 @@ class CartActivityViewModel:ViewModel() {
         val list = arrayListOf<Cart>()
         mDatabaseReference.setValue(list)
     }
+    fun flashList(list: ArrayList<Cart>){
+        mDatabaseReference.setValue(list)
 
+    }
 
 }

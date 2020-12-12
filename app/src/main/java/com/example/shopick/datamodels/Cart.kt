@@ -8,6 +8,6 @@ data class Cart(
     val image: String? = null,
     val discount: String? = null,
     val cutPrice: String? = null,
-    val quantity: String? = null,
+    var quantity: String? = null,
     var ingredients: ArrayList<String>? = null
 ):Serializable
