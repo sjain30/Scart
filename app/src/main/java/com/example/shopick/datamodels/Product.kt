@@ -12,5 +12,6 @@ class Product(
     val type: String? = null,
     val ingredients: ArrayList<String>? = null,
     val veg: String? = null,
-    val milk: String?=null
+    val milk: String?=null,
+    val recommend: String? = null
 ) : Serializable

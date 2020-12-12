@@ -37,11 +37,6 @@ class ScannedItemActivity : AppCompatActivity() {
         mDatabaseReference.addListenerForSingleValueEvent(listener)
         cartDatabaseReference = FirebaseUtil.getDatabase().getReference("Cart/${FirebaseAuth.getInstance().currentUser?.uid}")
 
-        recyclerViewRecommended.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        val adapter = RecommendationAdapter(arrayListOf("Apple", "Mango"))
-        recyclerViewRecommended.adapter = adapter
-
         add_to_cart.setOnClickListener {
             flashCardList()
         }
@@ -51,7 +46,8 @@ class ScannedItemActivity : AppCompatActivity() {
         cartDatabaseReference.addListenerForSingleValueEvent(cartListener)
         arrayList.add(Cart(product.productName.toString(),product.price.toString(),product.image.toString(),product.discount.toString(),product.cutPrice.toString(),"1",null))
         cartDatabaseReference.setValue(arrayList).addOnSuccessListener {
-            startActivity(Intent(this,CartActivity::class.java))
+            toast("Item added to cart!")
+            finish()
         }
 
     }
@@ -76,6 +72,10 @@ class ScannedItemActivity : AppCompatActivity() {
             for (code in snapshot.children) {
                 product = code.getValue(Product::class.java)!!
                 if (product.barcode.equals(barcode)) {
+                    recyclerViewRecommended.layoutManager =
+                        LinearLayoutManager(this@ScannedItemActivity, LinearLayoutManager.HORIZONTAL, false)
+                    val adapter = RecommendationAdapter(arrayListOf(product.recommend.toString()))
+                    recyclerViewRecommended.adapter = adapter
                     ImageHandler().getSharedInstance(this@ScannedItemActivity)?.load(product.image)
                         ?.into(productImage)
                     productName.text = product.productName
@@ -87,7 +87,7 @@ class ScannedItemActivity : AppCompatActivity() {
                     }
                     else
                         productVeg.gone()
-
+                    break
                 }
             }
         }
