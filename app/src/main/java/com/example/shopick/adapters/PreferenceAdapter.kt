@@ -1,19 +1,21 @@
 package com.example.shopick.adapters
 
 import android.content.Context
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.viewpager.widget.PagerAdapter
-import com.example.shopick.PreferenceModel.ModelPreferences
+import com.example.shopick.datamodels.ModelPreferences
 import com.example.shopick.R
 import com.example.shopick.utils.FirebaseUtil
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.item_preferences.*
 import kotlinx.android.synthetic.main.item_preferences.view.*
-import java.security.AccessControlContext
+import java.util.*
+import java.util.logging.Handler
+import kotlin.collections.ArrayList
+import kotlin.concurrent.schedule
 
 class PreferenceAdapter(private val context: Context, private val ModelArrayList:ArrayList<ModelPreferences>):
     PagerAdapter() {
@@ -37,6 +39,8 @@ class PreferenceAdapter(private val context: Context, private val ModelArrayList
         val first_choice=datamodel.choice1
         val second_choice=datamodel.choice2
 
+        view.choice2.setBackgroundColor(Color.parseColor("#FEC63E"))
+
         // set the data here
         view.Preference.text=preference_quesion
         view.choice1.text=first_choice
@@ -44,27 +48,38 @@ class PreferenceAdapter(private val context: Context, private val ModelArrayList
 
         view.choice1.setOnClickListener {
             // load data to firebase
+            view.choice1.setBackgroundColor(Color.GREEN)
             mDatabaseReference.child("${FirebaseAuth.getInstance().currentUser?.uid}").child(view.Preference.text.toString()).setValue(view.choice1.text.toString())
                 .addOnSuccessListener {
                     Log.d("TAG", "addList: Success")
+                    Timer().schedule(1000) {
+                        view.choice1.setBackgroundColor(Color.parseColor("#FEC63E"))
+                        view.choice2.isClickable = false
+                    }
                 }
                 .addOnFailureListener {
                     Log.d("TAG", "addList: ${it.toString()}")
                 }
+            view.choice2.isClickable=true
         }
+
         view.choice2.setOnClickListener {
             // load data to firebase
+            view.choice2.setBackgroundColor(Color.GREEN)
             mDatabaseReference.child("${FirebaseAuth.getInstance().currentUser?.uid}").child(view.Preference.text.toString()).setValue(view.choice2.text.toString())
                 .addOnSuccessListener {
                     Log.d("TAG", "addList: Success")
+                    Timer().schedule(1000) {
+                        view.choice2.setBackgroundColor(Color.parseColor("#FEC63E"))
+                        view.choice1.isClickable = false
+                    }
                 }
                 .addOnFailureListener {
                     Log.d("TAG", "addList: ${it.toString()}")
                 }
+            view.choice1.isClickable=true
         }
-
         container.addView(view,position)
-
         return view
     }
 

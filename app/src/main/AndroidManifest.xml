@@ -20,7 +20,7 @@
         android:roundIcon="@mipmap/ic_launcher_scart_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Shopick">
-        <activity android:name=".activities.PaymentActivity"></activity>
+        <activity android:name=".activities.MyProfileActivity"></activity>
         <activity
             android:name=".activities.SplashActivity"
             android:theme="@style/SplashTheme">

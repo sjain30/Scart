@@ -1,22 +1,16 @@
 package com.example.shopick.activities
 
 import android.content.Intent
-import android.graphics.ColorSpace
-import android.graphics.pdf.PdfDocument
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.ActionBar
-import androidx.core.view.get
 import androidx.viewpager.widget.ViewPager
-import com.example.shopick.PreferenceModel.ModelPreferences
+import com.example.shopick.datamodels.ModelPreferences
 import com.example.shopick.R
 import com.example.shopick.adapters.PreferenceAdapter
-import com.example.shopick.utils.FirebaseUtil
-import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_google_login.*
 import kotlinx.android.synthetic.main.activity_preferences.*
-import kotlinx.android.synthetic.main.item_preferences.*
 
 class PreferencesActivity : AppCompatActivity() {
 
@@ -30,15 +24,22 @@ class PreferencesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_preferences)
 
             loadPreferenceCards()
-
+        var positionOfCards=ViewPager.currentItem
             ViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
 
                 override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-
+                    positionOfCards=ViewPager.currentItem
+                    next.setOnClickListener {
+                        positionOfCards+=1
+                        ViewPager.currentItem=positionOfCards
+                    }
                 }
 
                 override fun onPageSelected(position: Int) {
-
+                    next.setOnClickListener {
+                        positionOfCards+=1
+                        ViewPager.currentItem=positionOfCards
+                    }
                 }
 
                 override fun onPageScrollStateChanged(state: Int) {
@@ -48,20 +49,30 @@ class PreferencesActivity : AppCompatActivity() {
             })
 // handle swipe left with next button
         next.setOnClickListener {
-            ViewPager.currentItem = ViewPager.currentItem+1
+            positionOfCards = positionOfCards+1
+            ViewPager.currentItem=positionOfCards
             Log.d("ViewPagerCurrentItem","${ViewPager.currentItem}")
-            if (ViewPager.currentItem==modelList.size-1){
-                next.setOnClickListener {
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
+                    if (positionOfCards==modelList.size-1){
+                        next.setOnClickListener {
+                            val intent = Intent(this, HomeActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+                    }
             }
-        }
+//            previous.setOnClickListener{
+//                positionOfCards= positionOfCards-1
+//                ViewPager.currentItem=positionOfCards
+//                Log.d("ViewPagerPreviousItem","${ViewPager.currentItem}")
+//            }
+
+
+
 // handle swipe right with previous button
-        previous.setOnClickListener{
-            ViewPager.currentItem = ViewPager.currentItem-1
-        }
+//        previous.setOnClickListener{
+//            ViewPager.currentItem = ViewPager.currentItem-1
+//            Log.d("ViewPagerPreviousItem","${ViewPager.currentItem}")
+//        }
 
 //        while (ViewPager.currentItem<=modelList.size-1){
 //            choice1.setOnClickListener {
@@ -91,7 +102,7 @@ class PreferencesActivity : AppCompatActivity() {
         modelList= ArrayList()
         modelList.add(ModelPreferences("Are you a Vegetarian or a Non-Vegetarian?", "Vegetarian" , "Non-Vegetarian"))
         modelList.add(ModelPreferences("Are you Lactose Intolerant?","Yes","No"))
-        modelList.add(ModelPreferences("Eggs, Milk, Fish, Soy or Wheat?", "Yes","No"))
+        modelList.add(ModelPreferences("Allergic to Eggs, Milk, Fish, Soy or Wheat?", "Yes","No"))
         modelList.add(ModelPreferences("What do you usually buy?", "Packaged Products","Groceries"))
 
         // adapter setup

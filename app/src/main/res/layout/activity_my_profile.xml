@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.MyProfileActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@color/yellow_dark">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/backButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:civ_border_color="#8A8989"
+            android:src="@drawable/ic_home_back"/>
+        <TextView
+            android:id="@+id/Myprofile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="30sp"
+            android:text="My Profile"
+            android:textColor="@color/black"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ImageProfile"
+        android:layout_width="150dp"
+        android:layout_marginTop="30dp"
+        android:layout_height="150dp"
+        app:civ_border_color="#8A8989"
+        android:src="@drawable/ic_home_back"
+        android:layout_gravity="center_horizontal"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:layout_marginStart="14dp"/>
+    <TextView
+        android:id="@+id/UsernameProfile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="20sp"
+        android:text="Username"
+        android:textColor="@color/black"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:layout_marginStart="14dp"/>
+        <TextView
+            android:id="@+id/EmailProfile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:text="Email"
+            android:textColor="@color/black"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User ID"
+            android:layout_marginStart="14dp"/>
+        <TextView
+            android:id="@+id/UserIDProfile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:text="User ID"
+            android:textColor="@color/black"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+</LinearLayout>
