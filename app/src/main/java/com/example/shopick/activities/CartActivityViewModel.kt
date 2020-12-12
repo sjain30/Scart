@@ -1,6 +1,7 @@
 package com.example.shopick.activities
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -48,6 +49,10 @@ class CartActivityViewModel:ViewModel() {
             })
         Log.d("TAG", "getList: $list")
         return listItems!!
+    }
+    fun removeItem(){
+        val list = arrayListOf<Cart>()
+        mDatabaseReference.setValue(list)
     }
 
 

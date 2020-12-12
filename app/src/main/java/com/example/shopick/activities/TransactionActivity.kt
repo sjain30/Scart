@@ -42,7 +42,7 @@ import java.util.*
 import javax.inject.Inject
 
 
-class TransactionActivity : AppCompatActivity(), PaymentResultListener {
+class TransactionActivity : AppCompatActivity(){
 
     private lateinit var checkout: Checkout
     private var sheetBehavior: BottomSheetBehavior<RelativeLayout>? = null
@@ -185,14 +185,6 @@ class TransactionActivity : AppCompatActivity(), PaymentResultListener {
                 Toast.makeText(this, result.contents.toString(), Toast.LENGTH_SHORT).show()
             }
         }
-    }
-
-    override fun onPaymentSuccess(p0: String?) {
-        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onPaymentError(p0: Int, p1: String?) {
-        Toast.makeText(this, "Fail", Toast.LENGTH_SHORT).show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -57,7 +57,7 @@ class ShoppingListViewModel(application: Application) : AndroidViewModel(applica
                 Log.d("TAG", "addList: Success")
             }
             .addOnFailureListener {
-                Log.d("TAG", "addList: ${it.toString()}")
+                Log.d("TAG", "addList: ${it}")
             }
 
     }

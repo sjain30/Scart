@@ -1,6 +1,7 @@
 package com.example.shopick.activities
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -25,6 +26,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.razorpay.Checkout
+import com.razorpay.PaymentResultListener
 import kotlinx.android.synthetic.main.activity_cart.*
 import org.json.JSONObject
 import retrofit2.Call
@@ -33,12 +35,12 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import javax.inject.Inject
 
-class CartActivity : AppCompatActivity() {
+class CartActivity : AppCompatActivity(), PaymentResultListener {
 
     @Inject
     lateinit var retrofit: Retrofit
     lateinit var cartActivityViewModel: CartActivityViewModel
-    var total = 1
+    var total = 0
     var count = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -119,7 +121,7 @@ class CartActivity : AppCompatActivity() {
             options.put("amount", "${total*100}")
             val preFill = JSONObject()
             preFill.put("email", FirebaseAuth.getInstance().currentUser?.email)
-            preFill.put("contact", "9876543210")
+            preFill.put("contact", "9971294004")
             options.put("prefill", preFill)
             co.open(activity, options)
         } catch (e: Exception) {
@@ -127,5 +129,17 @@ class CartActivity : AppCompatActivity() {
                 .show()
             e.printStackTrace()
         }
+    }
+    override fun onPaymentSuccess(p0: String?) {
+        cartActivityViewModel.removeItem()
+        startActivity(Intent(this,PaymentActivity::class.java).apply {
+            putExtra("amount",total)
+        })
+        finish()
+        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onPaymentError(p0: Int, p1: String?) {
+        Toast.makeText(this, "Fail:$p1", Toast.LENGTH_SHORT).show()
     }
 }

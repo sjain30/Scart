@@ -6,12 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".activities.ShoppingList">
 
-    <View
+    <ImageView
         android:id="@+id/view2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:alpha="0.25"
-        android:background="@drawable/ic_reading_list" />
+        android:src="@drawable/ic_reading_list"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="0.75:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -39,9 +44,5 @@
             android:background="@android:color/transparent"
             android:hint="Enter item" />
     </com.google.android.material.textfield.TextInputLayout>
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
