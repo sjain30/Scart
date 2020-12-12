@@ -5,32 +5,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.SettingsActivity"
-    android:background="@color/yellow_dark"
+    android:background="@color/white"
     android:orientation="vertical">
 
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/cart_appbar"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@android:color/transparent"
+        android:fitsSystemWindows="true"
+        app:elevation="0dp">
 
-        <ImageButton
-            android:id="@+id/backSettings"
-            android:layout_width="50dp"
-            android:layout_height="70dp"
-            android:src="@drawable/ic_home_back"
-            android:background="@color/zxing_transparent"/>
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Settings"
-            android:textSize="30sp"
-            android:fontFamily="@font/poppins_regular"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            android:textColor="@color/white"/>
+            android:layout_height="wrap_content">
 
-    </LinearLayout>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/settings_toolbar"
+                android:layout_width="match_parent"
+                app:title=" "
+                android:layout_height="?android:attr/actionBarSize"
+                android:background="@color/yellow_dark"
+                android:focusableInTouchMode="true"
+                app:contentInsetStartWithNavigation="0dp"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+            <TextView
+                android:id="@+id/activity_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Settings"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -84,7 +100,7 @@
                 android:layout_height="match_parent"
                 android:textSize="20sp"
                 android:text="My Cart"
-                android:textColor="@color/white"
+                android:textColor="@color/yellow_dark"
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="10dp"
                 android:layout_gravity="center_horizontal" />
@@ -93,7 +109,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/white"
+            android:background="@color/yellow_dark"
             android:layout_margin="10dp"/>
 
         <LinearLayout
@@ -114,7 +130,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="10dp"
-                android:textColor="@color/white"
+                android:textColor="@color/yellow_dark"
                 android:fontFamily="@font/poppins_regular"
                 android:text="Preferences"
                 android:textSize="20sp" />
@@ -123,7 +139,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/white"
+            android:background="@color/yellow_dark"
             android:layout_margin="10dp"/>
 
         <LinearLayout
@@ -142,7 +158,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textSize="20sp"
-                android:textColor="@color/white"
+                android:textColor="@color/yellow_dark"
                 android:text="Order History"
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="10dp"
@@ -152,7 +168,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/white"
+            android:background="@color/yellow_dark"
             android:layout_margin="10dp"/>
 
         <LinearLayout
@@ -172,7 +188,7 @@
                 android:layout_height="match_parent"
                 android:textSize="20sp"
                 android:text="About Us"
-                android:textColor="@color/white"
+                android:textColor="@color/yellow_dark"
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="10dp"
                 android:layout_gravity="center_horizontal" />
@@ -181,7 +197,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/white"
+            android:background="@color/yellow_dark"
             android:layout_margin="10dp"/>
 
         <LinearLayout
@@ -201,7 +217,7 @@
                 android:layout_height="match_parent"
                 android:textSize="20sp"
                 android:text="Contact Us"
-                android:textColor="@color/white"
+                android:textColor="@color/yellow_dark"
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="10dp"
                 android:layout_gravity="center_horizontal" />
@@ -210,7 +226,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/white"
+            android:background="@color/yellow_dark"
             android:layout_margin="10dp"/>
 
     </LinearLayout>
