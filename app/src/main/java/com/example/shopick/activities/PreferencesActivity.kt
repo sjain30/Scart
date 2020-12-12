@@ -29,17 +29,13 @@ class PreferencesActivity : AppCompatActivity() {
 
                 override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                     positionOfCards=ViewPager.currentItem
-                    next.setOnClickListener {
-                        positionOfCards+=1
-                        ViewPager.currentItem=positionOfCards
-                    }
+//                    next.setOnClickListener {
+//                        positionOfCards+=1
+//                        ViewPager.currentItem=positionOfCards
+//                    }
                 }
 
                 override fun onPageSelected(position: Int) {
-                    next.setOnClickListener {
-                        positionOfCards+=1
-                        ViewPager.currentItem=positionOfCards
-                    }
                 }
 
                 override fun onPageScrollStateChanged(state: Int) {
