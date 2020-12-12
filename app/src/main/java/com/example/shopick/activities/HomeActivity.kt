@@ -6,7 +6,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -56,12 +55,6 @@ class HomeActivity : AppCompatActivity() {
             Log.d("TAG", "onCreate: $storesList")
         })
 
-        store_listing.setOnItemClickListener { parent, view, position, id ->
-            val intent = Intent(this,TransactionActivity::class.java)
-            startActivity(intent)
-        }
-
-
         search_textInputEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
@@ -70,12 +63,6 @@ class HomeActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (s.toString().isEmpty()) {
                     storesList?.let { loadInAdapter(it) }
-//                    store_listing.adapter = ArrayAdapter<String>(
-//                        this@HomeActivity,
-//                        android.R.layout.simple_list_item_1,
-//                        android.R.id.text1,
-//                        arrayListOf<String>()
-//                    )
                 } else {
                     val list = arrayListOf<String>()
                     for (item in storesList!!) {
@@ -83,10 +70,6 @@ class HomeActivity : AppCompatActivity() {
                             list.add(item)
                     }
                     loadInAdapter(list)
-//                    store_listing.adapter = ArrayAdapter<String>(
-//                        this@HomeActivity,
-//                        android.R.layout.simple_list_item_1, android.R.id.text1, list
-//                    )
                 }
             }
 
@@ -118,17 +101,6 @@ class HomeActivity : AppCompatActivity() {
             }
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 when (newState) {
-                    BottomSheetBehavior.STATE_HIDDEN -> {
-
-                    }
-                    BottomSheetBehavior.STATE_EXPANDED -> {
-
-//                        bottom_stores_list.setHasFixedSize(true)
-//                        bottom_stores_list.layoutManager= LinearLayoutManager(this@HomeActivity)
-//                        val adapter = storesList?.let { StoresAdapter(it) }
-//                        bottom_stores_list.adapter = adapter
-
-                    }
                     BottomSheetBehavior.STATE_COLLAPSED -> {
                         BottomSheetBehavior.STATE_COLLAPSED
                     }
