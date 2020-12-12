@@ -25,9 +25,7 @@ class CartAdapter(val arrayList: ArrayList<Cart>):RecyclerView.Adapter<CartAdapt
     class ViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
 
         val price:TextView = itemView.findViewById(R.id.product_price)
-        val cutPrice:TextView = itemView.findViewById(R.id.cutted_price)
+        val cutPrice:TextView = itemView.findViewById(R.id.cut_price)
         val image:ImageView = itemView.findViewById(R.id.product_image)
-        val qty:TextView = itemView.findViewById(R.id.product_quantity)
-        val discount:TextView = itemView.findViewById(R.id.textView3)
     }
 }

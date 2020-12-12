@@ -44,4 +44,82 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/checkout_layout"
+        android:layout_marginStart="16dp"
+        android:background="#EBEBEB"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="64dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Voucher"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textStyle="bold"
+            android:layout_margin="16dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:id="@+id/shadow"
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:background="@drawable/shadow_bottom_view"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@+id/checkout_layout"
+        app:layout_constraintBottom_toTopOf="@+id/checkout_layout" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/checkout_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/txt_total_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total: Rs. 2440"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="8dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/txt_total_qty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4 Items"
+            app:layout_constraintStart_toStartOf="@+id/txt_total_amount"
+            app:layout_constraintTop_toBottomOf="@+id/txt_total_amount"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:textSize="16sp"/>
+
+        <android.widget.Button
+            android:id="@+id/btn_pay"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Pay"
+            android:background="#32CD32"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

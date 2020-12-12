@@ -23,6 +23,8 @@
             android:id="@+id/edt_list_item"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:maxLines="1"
+            android:inputType="text"
             app:layout_constraintStart_toEndOf="@+id/checkbox"
             app:layout_constraintEnd_toStartOf="@id/img_btn_delete"
             app:layout_constraintTop_toTopOf="parent"

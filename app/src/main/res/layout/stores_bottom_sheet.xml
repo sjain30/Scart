@@ -8,7 +8,7 @@
     android:orientation="vertical"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     app:behavior_peekHeight="150dp"
-
+    android:background="@color/white"
     android:padding="10dp">
 
     <View

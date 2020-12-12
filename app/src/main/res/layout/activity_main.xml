@@ -165,7 +165,7 @@
         android:layout_height="12dp"
         android:background="@drawable/shadow_bottom_view"
         android:visibility="visible"
-        app:layout_anchor="@id/bottomsheet" />
+        app:layout_anchor="@id/bottom_sheet" />
 
     <include layout="@layout/bottom_sheet" />
 
