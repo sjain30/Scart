@@ -1,6 +1,7 @@
 package com.example.shopick.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Paint
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,11 +11,13 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopick.R
 import com.example.shopick.ShoppingListViewModel
+import com.example.shopick.activities.TransactionActivity
 import com.example.shopick.datamodels.Item
 import java.util.*
 
 class StoresAdapter(
-    private val subjects: ArrayList<String>
+    private val subjects: ArrayList<String>,
+    private val context: Context
 ) : RecyclerView.Adapter<StoresAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,6 +28,10 @@ class StoresAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.storeName.text = subjects[position]
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, TransactionActivity::class.java)
+            context.startActivity(intent)
+        }
     }
 
 
