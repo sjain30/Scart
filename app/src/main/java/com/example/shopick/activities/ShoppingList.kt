@@ -1,6 +1,7 @@
 package com.example.shopick.activities
 
 import android.os.Bundle
+import android.view.KeyEvent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -30,8 +31,18 @@ class ShoppingList : AppCompatActivity() {
             recycler_list.adapter = adapter
         })
 
-        btn_create_list.setOnClickListener {
-            shoppingListViewModel.addList(edt_name.text.toString())
+        edt_name.editText?.setOnKeyListener { v, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN) {
+                when (keyCode) {
+                    KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> {
+                        shoppingListViewModel.addList(edt_name.editText?.text.toString())
+                        return@setOnKeyListener true
+                    }
+                    else -> {
+                    }
+                }
+            }
+            return@setOnKeyListener false
         }
     }
 }
