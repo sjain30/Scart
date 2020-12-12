@@ -37,9 +37,8 @@ class CartActivity : AppCompatActivity() {
 
     @Inject
     lateinit var retrofit: Retrofit
-    lateinit var cartDatabaseReference: DatabaseReference
     lateinit var cartActivityViewModel: CartActivityViewModel
-    var total = 0
+    var total = 1
     var count = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -117,7 +116,7 @@ class CartActivity : AppCompatActivity() {
             //You can omit the image option to fetch the image from dashboard
             options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png")
             options.put("currency", "INR")
-            options.put("amount", "${txt_total_amount.text.toString().toInt()*100}")
+            options.put("amount", "${total*100}")
             val preFill = JSONObject()
             preFill.put("email", FirebaseAuth.getInstance().currentUser?.email)
             preFill.put("contact", "9876543210")

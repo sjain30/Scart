@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shopick.HomeViewModel
 import com.example.shopick.R
 import com.example.shopick.adapters.StoresAdapter
+import com.example.shopick.datamodels.Store
 import com.example.shopick.utils.gone
 import com.example.shopick.utils.visible
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -39,7 +40,7 @@ import java.lang.Exception
 
 class HomeActivity : AppCompatActivity() {
 
-    var storesList: ArrayList<String>? = null
+    var storesList: ArrayList<Store>? = null
     lateinit var homeViewModel: HomeViewModel
     private var sheetBehavior: BottomSheetBehavior<RelativeLayout>? = null
     private lateinit var mLocationManager: LocationManager
@@ -66,8 +67,10 @@ class HomeActivity : AppCompatActivity() {
             if (isOpen) {
                 choose_location_layout.gone()
                 sheetBehavior?.state = BottomSheetBehavior.STATE_EXPANDED
+                btn_shop.gone()
             } else {
                 choose_location_layout.visible()
+                btn_shop.visible()
             }
         }
 
@@ -75,7 +78,7 @@ class HomeActivity : AppCompatActivity() {
         homeViewModel.getStoresList().observe(this, Observer {
             storesList = arrayListOf()
             storesList?.addAll(it)
-            loadInAdapter(it as ArrayList<String>)
+            loadInAdapter(it as ArrayList<Store>)
             Log.d("TAG", "onCreate: $storesList")
         })
 
@@ -88,9 +91,9 @@ class HomeActivity : AppCompatActivity() {
                 if (s.toString().isEmpty()) {
                     storesList?.let { loadInAdapter(it) }
                 } else {
-                    val list = arrayListOf<String>()
+                    val list = arrayListOf<Store>()
                     for (item in storesList!!) {
-                        if (item.contains(s.toString(), true))
+                        if (item.name?.contains(s.toString(), true)!!)
                             list.add(item)
                     }
                     loadInAdapter(list)
@@ -211,7 +214,7 @@ class HomeActivity : AppCompatActivity() {
         })
     }
 
-    private fun loadInAdapter(list: ArrayList<String>) {
+    private fun loadInAdapter(list: ArrayList<Store>) {
         bottom_stores_list.setHasFixedSize(true)
         bottom_stores_list.layoutManager = LinearLayoutManager(this@HomeActivity)
         val adapter = StoresAdapter(list, this)

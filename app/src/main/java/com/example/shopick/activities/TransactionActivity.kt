@@ -65,6 +65,7 @@ class TransactionActivity : AppCompatActivity(), PaymentResultListener {
         setSupportActionBar(toolbar)
 
         activity_title.text = intent?.getStringExtra("shop")
+        activity_title_address.text = intent?.getStringExtra("address")
 
         shoppingListViewModel = ViewModelProvider(this@TransactionActivity).get(
             ShoppingListViewModel::class.java

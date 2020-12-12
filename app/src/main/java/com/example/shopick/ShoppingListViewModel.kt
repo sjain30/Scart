@@ -34,7 +34,7 @@ class ShoppingListViewModel(application: Application) : AndroidViewModel(applica
                 override fun onDataChange(snapshot: DataSnapshot) {
                     list.clear()
                     for (items in snapshot.children) {
-                        val item = items.getValue(Item::class.java);
+                        val item = items.getValue(Item::class.java)
                         item?.let { list.add(it) }
                     }
                     listItems?.postValue(list)

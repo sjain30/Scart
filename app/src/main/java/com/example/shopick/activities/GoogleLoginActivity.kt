@@ -41,7 +41,7 @@ class GoogleLoginActivity : AppCompatActivity() {
 
         firebaseAuth= FirebaseAuth.getInstance()
 
-        Signin.setOnClickListener{ view: View? ->
+        btn_google_sign_in.setOnClickListener{ view: View? ->
             signInGoogle()
         }
     }

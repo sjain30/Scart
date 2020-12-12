@@ -32,7 +32,7 @@ class NetworkModule {
             .addInterceptor(interceptor)
             .authenticator(object : Authenticator {
                 override fun authenticate(route: Route?, response: Response): Request? {
-                    val credential = Credentials.basic("rzp_test_WsTEz4PgQowhnY", "5EiTcDlRLRfgucU7lBfOxhqD ")
+                    val credential = Credentials.basic("rzp_test_WsTEz4PgQowhnY", "5EiTcDlRLRfgucU7lBfOxhqD")
                     return response.request.newBuilder().header("Authorization", credential)
                         .build()
                 }

@@ -2,21 +2,19 @@ package com.example.shopick.adapters
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Paint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopick.R
-import com.example.shopick.ShoppingListViewModel
 import com.example.shopick.activities.TransactionActivity
-import com.example.shopick.datamodels.Item
+import com.example.shopick.datamodels.Store
 import java.util.*
+import kotlin.collections.ArrayList
 
 class StoresAdapter(
-    private val subjects: ArrayList<String>,
+    private val stores: ArrayList<Store>,
     private val context: Context
 ) : RecyclerView.Adapter<StoresAdapter.ViewHolder>() {
 
@@ -27,16 +25,18 @@ class StoresAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.storeName.text = subjects[position]
+        holder.storeName.text = stores[position].name
+        holder.storeAddress.text = stores[position].address
         holder.itemView.setOnClickListener {
             val intent = Intent(context, TransactionActivity::class.java)
-            intent.putExtra("shop",subjects[position])
+            intent.putExtra("shop",stores[position].name)
+            intent.putExtra("address",stores[position].address)
             context.startActivity(intent)
         }
     }
 
 
-    override fun getItemCount() = subjects.size
+    override fun getItemCount() = stores.size
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
