@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Shopick</string>
+    <string name="app_name">Scart</string>
     <string name="enable_your_location">Enable Your Location</string>
     <string name="location_request">Please allow to use your location to show nearby restaurant on the map.</string>
     <string name="stores_near_you">Stores Near You</string>
