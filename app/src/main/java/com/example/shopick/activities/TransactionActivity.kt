@@ -25,8 +25,8 @@ import com.razorpay.Checkout
 import com.razorpay.PaymentResultListener
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_shopping_list.*
-import kotlinx.android.synthetic.main.bottomsheet.*
-import kotlinx.android.synthetic.main.bottomsheet.recycler_list
+import kotlinx.android.synthetic.main.bottom_sheet.*
+import kotlinx.android.synthetic.main.bottom_sheet.recycler_list
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -131,6 +131,9 @@ class TransactionActivity : AppCompatActivity(), PaymentResultListener {
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         if (result != null) {
             if (result.contents != null) {
+                val intent = Intent(this, ScannedItemActivity::class.java)
+                intent.putExtra("Barcode",result.contents.toString())
+                startActivity(intent)
                 Toast.makeText(this, result.contents.toString(), Toast.LENGTH_SHORT).show()
             }
         }

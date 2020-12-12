@@ -80,7 +80,7 @@ class GoogleLoginActivity : AppCompatActivity() {
             if (task.isSuccessful) {
                 SavedSharedPreference.setEmail(this, account.email.toString())
                 SavedSharedPreference.setUsername(this, account.displayName.toString())
-                val intent = Intent(this, TransactionActivity::class.java)
+                val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
                 finish()
             }
@@ -90,7 +90,7 @@ class GoogleLoginActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         if (GoogleSignIn.getLastSignedInAccount(this) != null) {
-            startActivity(Intent(this, TransactionActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
             finish()
         }
 

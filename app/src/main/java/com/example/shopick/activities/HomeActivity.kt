@@ -11,8 +11,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.shopick.HomeViewModel
 import com.example.shopick.R
+import com.example.shopick.utils.gone
+import com.example.shopick.utils.visible
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_main.*
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 
 class HomeActivity : AppCompatActivity() {
 
@@ -26,6 +29,14 @@ class HomeActivity : AppCompatActivity() {
         btn_shop.setOnClickListener {
             val intent = Intent(this,ShoppingList::class.java)
             startActivity(intent)
+        }
+
+        KeyboardVisibilityEvent.setEventListener(this) { isOpen ->
+            if (isOpen) {
+                choose_location_layout.gone()
+            } else {
+                choose_location_layout.visible()
+            }
         }
 
 //        btn_transaction.setOnClickListener {
