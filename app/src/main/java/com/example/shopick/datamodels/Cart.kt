@@ -3,11 +3,11 @@ package com.example.shopick.datamodels
 import java.io.Serializable
 
 data class Cart(
-    val productName: String,
-    val price: String,
-    val image: String,
-    val discount: String,
-    val cutPrice: String,
-    val quantity: String,
+    val productName: String? = null,
+    val price: String? = null,
+    val image: String? = null,
+    val discount: String? = null,
+    val cutPrice: String? = null,
+    val quantity: String? = null,
     var ingredients: ArrayList<String>? = null
 ):Serializable

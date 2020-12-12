@@ -27,13 +27,14 @@
 
 
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Frequently Bought Together"
-        app:layout_constraintStart_toStartOf="@id/recyclerViewRecommended"
-        app:layout_constraintBottom_toTopOf="@id/recyclerViewRecommended"
         android:layout_margin="8dp"
-        android:textSize="18sp"/>
+        android:text="Frequently Bought Together"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/recyclerViewRecommended"
+        app:layout_constraintTop_toBottomOf="@+id/productName" />
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -41,10 +42,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:layout_marginTop="8dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/add_to_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_button_sexy"
+        android:text="@string/add_to_cart"
+        android:layout_margin="16dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

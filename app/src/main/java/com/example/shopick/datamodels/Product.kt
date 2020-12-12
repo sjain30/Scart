@@ -3,6 +3,7 @@ package com.example.shopick.datamodels
 import java.io.Serializable
 
 class Product(
+    val barcode: String? =null,
     val productName: String? = null,
     val price: String? = null,
     val image: String? = null,

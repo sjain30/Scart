@@ -1,4 +1,4 @@
 package com.example.shopick.datamodels
 
-data class Item(val name: String? = null,
+data class Item(var name: String? = null,
                 var state: Boolean? = null)
