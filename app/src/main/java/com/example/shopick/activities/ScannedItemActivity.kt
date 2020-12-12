@@ -18,6 +18,7 @@ import com.example.shopick.utils.toast
 import com.example.shopick.utils.visible
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import io.reactivex.rxjava3.core.Completable
 import kotlinx.android.synthetic.main.activity_scanned_item.*
 
 class ScannedItemActivity : AppCompatActivity() {
@@ -42,28 +43,27 @@ class ScannedItemActivity : AppCompatActivity() {
         }
     }
 
-    private fun flashCardList() {
-        cartDatabaseReference.addListenerForSingleValueEvent(cartListener)
-        arrayList.add(Cart(product.productName.toString(),product.price.toString(),product.image.toString(),product.discount.toString(),product.cutPrice.toString(),"1",null))
-        cartDatabaseReference.setValue(arrayList).addOnSuccessListener {
-            toast("Item added to cart!")
-            finish()
-        }
-
-    }
-
-    private val cartListener = object :ValueEventListener{
-        override fun onDataChange(snapshot: DataSnapshot) {
-            arrayList.clear()
-            for (items in snapshot.children) {
-                val item = items.getValue(Cart::class.java);
-                item?.let { arrayList.add(it) }
+    private fun flashCardList(){
+        cartDatabaseReference.addListenerForSingleValueEvent(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                arrayList.clear()
+                for (items in snapshot.children) {
+                    val item = items.getValue(Cart::class.java);
+                    item?.let { arrayList.add(it) }
+                }
+                arrayList.add(Cart(product.productName.toString(),product.price.toString(),product.image.toString(),product.discount.toString(),product.cutPrice.toString(),"1",null))
+                cartDatabaseReference.setValue(arrayList).addOnSuccessListener {
+                    toast("Item added to cart!")
+                    finish()
+                }
             }
-        }
 
-        override fun onCancelled(error: DatabaseError) {
-            Log.d(localClassName, "onCancelled: ${error.message}")
-        }
+            override fun onCancelled(error: DatabaseError) {
+                Log.d(localClassName, "onCancelled: ${error.message}")
+            }
+
+        })
+
 
     }
 
