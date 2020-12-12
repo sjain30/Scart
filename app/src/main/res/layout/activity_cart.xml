@@ -8,6 +8,7 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/cart_appbar"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:background="@android:color/transparent"
@@ -43,6 +44,13 @@
         </RelativeLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cartRecyle"
+        android:layout_width="match_parent"
+        android:layout_margin="16dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/cart_appbar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -88,19 +96,21 @@
             android:id="@+id/txt_total_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total: Rs. 2440"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="Total: Rs. 2440"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/black"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/txt_total_qty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4 Items"
+            android:text="0 Items"
             app:layout_constraintStart_toStartOf="@+id/txt_total_amount"
             app:layout_constraintTop_toBottomOf="@+id/txt_total_amount"
             app:layout_constraintBottom_toBottomOf="parent"
