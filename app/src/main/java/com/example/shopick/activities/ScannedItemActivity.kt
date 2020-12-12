@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.college.collegeconnect.utils.ImageHandler
 import com.example.shopick.R
@@ -12,7 +13,9 @@ import com.example.shopick.datamodels.Cart
 import com.example.shopick.datamodels.Item
 import com.example.shopick.datamodels.Product
 import com.example.shopick.utils.FirebaseUtil
+import com.example.shopick.utils.gone
 import com.example.shopick.utils.toast
+import com.example.shopick.utils.visible
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_scanned_item.*
@@ -76,6 +79,15 @@ class ScannedItemActivity : AppCompatActivity() {
                     ImageHandler().getSharedInstance(this@ScannedItemActivity)?.load(product.image)
                         ?.into(productImage)
                     productName.text = product.productName
+                    productPrice.text = "Rs. ${product.price}"
+                    if(product.veg?.contains("true") == true)
+                        productVeg.visible()
+                    else if(product.veg?.contains("false") == true) {
+                        productVeg.text = "This is a non-vegetarian product"
+                    }
+                    else
+                        productVeg.gone()
+
                 }
             }
         }
