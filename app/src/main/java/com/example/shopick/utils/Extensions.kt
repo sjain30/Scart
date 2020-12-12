@@ -9,10 +9,6 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 
-/**
- * Created by annsh on 28/11/17.
- */
-
 /*
 Extention function for inflaing a layout in Fragments and Adapters
  */
