@@ -59,7 +59,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="48dp"
             android:text="Enable"
-            android:textColorHint="@color/white"
+            android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 

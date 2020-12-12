@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Shopick">
         <activity android:name=".activities.ScannedItemActivity" />
-        <activity android:name=".activities.CartActivity" />
+        <activity android:name=".activities.CartActivity"
+            android:parentActivityName=".activities.CartActivity" />
         <activity android:name=".activities.HomeActivity"/>
         <activity android:name=".activities.ShoppingList" />
         <activity android:name=".activities.TransactionActivity" />

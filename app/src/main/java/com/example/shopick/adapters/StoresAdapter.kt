@@ -30,6 +30,7 @@ class StoresAdapter(
         holder.storeName.text = subjects[position]
         holder.itemView.setOnClickListener {
             val intent = Intent(context, TransactionActivity::class.java)
+            intent.putExtra("shop",subjects[position])
             context.startActivity(intent)
         }
     }
