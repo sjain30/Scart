@@ -17,7 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Shopick">
-        <activity android:name=".activities.ScannedItemActivity"></activity>
+        <activity android:name=".activities.ScannedItemActivity" />
         <activity android:name=".activities.CartActivity" />
         <activity android:name=".activities.HomeActivity"/>
         <activity android:name=".activities.ShoppingList" />
