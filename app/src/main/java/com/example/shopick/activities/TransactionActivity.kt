@@ -3,23 +3,17 @@ package com.example.shopick.activities
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuItem
+import android.util.Base64
 import android.view.View
 import android.widget.RelativeLayout
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shopick.CaptureAct
 import com.example.shopick.CheckoutInterface
 import com.example.shopick.R
 import com.example.shopick.ShoppingListViewModel
-import com.example.shopick.adapters.ListAdapter
 import com.example.shopick.dagger.DaggerShopickComponent
 import com.example.shopick.dagger.ShopickComponent
 import com.example.shopick.datamodels.Item
@@ -38,20 +32,19 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import java.io.UnsupportedEncodingException
+import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
+import com.example.shopick.adapters.ListAdapter
 
 
 class TransactionActivity : AppCompatActivity(), PaymentResultListener {
 
     private lateinit var checkout: Checkout
     private var sheetBehavior: BottomSheetBehavior<RelativeLayout>? = null
-    var tabOne: View? = null
-    var tabTwo: View? = null
-    var tabThree: View? = null
-    private var tabOne_text: TextView? = null
-    private var tabTwo_text: TextView? = null
-    private var tabThree_text: TextView? = null
+    private var listItems = ArrayList<String>()
 
     lateinit var shoppingListViewModel: ShoppingListViewModel
     @Inject
@@ -60,15 +53,9 @@ class TransactionActivity : AppCompatActivity(), PaymentResultListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        card_scan.visibility= View.VISIBLE
 
-        val toolbar = findViewById<Toolbar>(R.id.transaction_toolbar)
-        setSupportActionBar(toolbar)
-
-        activity_title.text = intent?.getStringExtra("shop")
-
-        shoppingListViewModel = ViewModelProvider(this@TransactionActivity).get(
-            ShoppingListViewModel::class.java
-        )
+        shoppingListViewModel = ViewModelProvider(this@TransactionActivity).get(ShoppingListViewModel::class.java)
 
         Checkout.preload(applicationContext)
 
@@ -85,47 +72,8 @@ class TransactionActivity : AppCompatActivity(), PaymentResultListener {
         setupFilterBottomSheet()
     }
 
-    private fun setUpTabIcons() {
-        tabOne = LayoutInflater.from(this)
-            .inflate(R.layout.custom_tab, null)
-        tabOne_text = tabOne?.findViewById(R.id.tab_Content)
-        tabOne_text?.text = "Favourites"
-        tabOne_text?.setTextColor(
-            ContextCompat.getColorStateList(
-                this,
-                R.color.black
-            )
-        )
-        tabLayout?.getTabAt(0)?.customView = tabOne
-
-        tabTwo = LayoutInflater.from(this)
-            .inflate(R.layout.custom_tab, null)
-        tabTwo_text = tabTwo?.findViewById(R.id.tab_Content)
-        tabTwo_text?.text = "Today's Offers"
-        tabTwo_text?.setTextColor(
-            ContextCompat.getColorStateList(
-                this,
-                R.color.black
-            )
-        )
-        tabLayout?.getTabAt(1)?.customView = tabTwo
-
-        tabThree = LayoutInflater.from(this)
-            .inflate(R.layout.custom_tab, null)
-        tabThree_text = tabThree?.findViewById(R.id.tab_Content)
-        tabThree_text?.text = "Favourites"
-        tabThree_text?.setTextColor(
-            ContextCompat.getColorStateList(
-                this,
-                R.color.black
-            )
-        )
-        tabLayout?.getTabAt(2)?.customView = tabThree
-
-    }
-
     private fun setupFilterBottomSheet() {
-        sheetBehavior = BottomSheetBehavior.from(bottom_sheet)
+        sheetBehavior = BottomSheetBehavior.from(bottomsheet)
 
         sheetBehavior?.isHideable = false
         /**
@@ -135,29 +83,30 @@ class TransactionActivity : AppCompatActivity(), PaymentResultListener {
         sheetBehavior?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
                 BottomSheetBehavior.STATE_EXPANDED
+                card_scan.visibility= View.INVISIBLE
             }
-
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 when (newState) {
                     BottomSheetBehavior.STATE_HIDDEN -> {
 
                     }
                     BottomSheetBehavior.STATE_EXPANDED -> {
-                        shoppingListViewModel.getListItems().observe(this@TransactionActivity, {
+                        shoppingListViewModel.getListItems().observe(this@TransactionActivity,{
                             recycler_list.setHasFixedSize(true)
-                            recycler_list.layoutManager =
-                                LinearLayoutManager(this@TransactionActivity)
+                            recycler_list.layoutManager= LinearLayoutManager(this@TransactionActivity)
                             val adapter = ListAdapter(
                                 it as ArrayList<Item>,
                                 this@TransactionActivity,
                                 shoppingListViewModel
                             )
                             recycler_list.adapter = adapter
+                            card_scan.visibility= View.INVISIBLE
                         })
 
                     }
                     BottomSheetBehavior.STATE_COLLAPSED -> {
                         BottomSheetBehavior.STATE_COLLAPSED
+                        card_scan.visibility= View.VISIBLE
                     }
                 }
             }
@@ -183,7 +132,7 @@ class TransactionActivity : AppCompatActivity(), PaymentResultListener {
         if (result != null) {
             if (result.contents != null) {
                 val intent = Intent(this, ScannedItemActivity::class.java)
-                intent.putExtra("Barcode", result.contents.toString())
+                intent.putExtra("Barcode",result.contents.toString())
                 startActivity(intent)
                 Toast.makeText(this, result.contents.toString(), Toast.LENGTH_SHORT).show()
             }
@@ -261,17 +210,9 @@ class TransactionActivity : AppCompatActivity(), PaymentResultListener {
         Toast.makeText(this, "Fail", Toast.LENGTH_SHORT).show()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.cart_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.cart) {
-            startActivity(Intent(this, CartActivity::class.java))
-        }
-        return super.onOptionsItemSelected(item)
+    @Throws(UnsupportedEncodingException::class)
+    fun getBase64String(value: String): String? {
+        return Base64.encodeToString(value.toByteArray(charset("UTF-8")), Base64.DEFAULT)
     }
 
 }

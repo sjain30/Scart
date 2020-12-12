@@ -6,8 +6,8 @@
     <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <uses-feature android:name="android.hardware.Camera" />
 
@@ -19,13 +19,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Shopick">
+        <activity android:name=".activities.PreferencesActivity"></activity>
+        <activity android:name=".activities.SettingsActivity" />
         <activity android:name=".activities.ScannedItemActivity" />
         <activity android:name=".activities.CartActivity"
             android:parentActivityName=".activities.CartActivity" />
-        <activity android:name=".activities.HomeActivity"/>
+        <activity android:name=".activities.HomeActivity" />
         <activity android:name=".activities.ShoppingList" />
         <activity android:name=".activities.TransactionActivity" />
-        <activity android:name=".activities.GoogleLoginActivity" >
+        <activity android:name=".activities.GoogleLoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,9 +39,8 @@
             android:screenOrientation="portrait"
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme" />
-        <service android:name = ".activities.LocationService" /> <!-- Broadcast receiver to handle notification actions -->
 
-
+        <service android:name=".activities.LocationService" /> <!-- Broadcast receiver to handle notification actions -->
         <meta-data
             android:name="com.razorpay.ApiKey"
             android:value="rzp_test_WsTEz4PgQowhnY" />

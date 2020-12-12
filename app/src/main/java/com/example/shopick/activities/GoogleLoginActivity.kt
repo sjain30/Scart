@@ -80,7 +80,7 @@ class GoogleLoginActivity : AppCompatActivity() {
             if (task.isSuccessful) {
                 SavedSharedPreference.setEmail(this, account.email.toString())
                 SavedSharedPreference.setUsername(this, account.displayName.toString())
-                val intent = Intent(this, HomeActivity::class.java)
+                val intent = Intent(this, PreferencesActivity::class.java)
                 startActivity(intent)
                 finish()
             }

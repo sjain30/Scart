@@ -52,6 +52,11 @@ class HomeActivity : AppCompatActivity() {
         val rxPermissions = RxPermissions(this)
         mLocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
+        settings.setOnClickListener {
+            val intent=Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         btn_shop.setOnClickListener {
             val intent = Intent(this, ShoppingList::class.java)

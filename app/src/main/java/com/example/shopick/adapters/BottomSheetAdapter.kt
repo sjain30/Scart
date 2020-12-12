@@ -1,4 +1,4 @@
-package com.example.shopick.activities
+package com.example.shopick.adapters
 
 import android.content.Context
 import android.graphics.Paint
@@ -42,10 +42,8 @@ class BottomSheetAdapter(private val subjects: ArrayList<String>,
     override fun getItemCount() = subjects.size
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
         var checkBox: CheckBox = itemView.findViewById(R.id.checkbox)
         var itemName: EditText = itemView.findViewById(R.id.edt_list_item)
         var delete: ImageButton = itemView.findViewById(R.id.img_btn_delete)
     }
-
 }

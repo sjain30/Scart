@@ -118,5 +118,11 @@ dependencies {
     implementation 'com.github.tbruyelle:rxpermissions:0.12'
     //location
     implementation 'com.google.android.gms:play-services-location:17.1.0'
+    // picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    // dots indicator for preferences
+    implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
+    // circle image view
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 }
