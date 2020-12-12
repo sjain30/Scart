@@ -46,13 +46,6 @@ class CartActivity : AppCompatActivity() {
 
     private fun createOrder() {
 
-//        val auth = "Basic " + getBase64String("rzp_test_WsTEz4PgQowhnY:5EiTcDlRLRfgucU7lBfOxhqD");
-//        Log.d("TAG", "createOrder: $auth")
-//        val requestWithHeader: Request = Request.Builder()
-//            .header("Authorization", Credentials.basic("YOUR_USER", "YOUR_PASS"))
-//            .build()
-
-
         retrofit.create(CheckoutInterface::class.java)
             .createOrder(
                 Order(

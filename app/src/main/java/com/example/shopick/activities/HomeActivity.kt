@@ -55,7 +55,6 @@ class HomeActivity : AppCompatActivity() {
         settings.setOnClickListener {
             val intent=Intent(this, SettingsActivity::class.java)
             startActivity(intent)
-            finish()
         }
 
         btn_shop.setOnClickListener {
