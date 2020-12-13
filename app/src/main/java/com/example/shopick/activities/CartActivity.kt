@@ -20,6 +20,7 @@ import com.example.shopick.datamodels.Cart
 import com.example.shopick.datamodels.Order
 import com.example.shopick.datamodels.OrderResponse
 import com.example.shopick.utils.FirebaseUtil
+import com.example.shopick.utils.toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -113,8 +114,8 @@ class CartActivity : AppCompatActivity(), PaymentResultListener {
         val co = Checkout()
         try {
             val options = JSONObject()
-            options.put("name", "Razorpay Corp")
-            options.put("description", "Demoing Charges")
+            options.put("name", intent?.getStringExtra("shop"))
+            options.put("description", "Total Bill")
             options.put("order_id", orderId)
             //You can omit the image option to fetch the image from dashboard
             options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png")
@@ -122,7 +123,7 @@ class CartActivity : AppCompatActivity(), PaymentResultListener {
             options.put("amount", "${total*100}")
             val preFill = JSONObject()
             preFill.put("email", FirebaseAuth.getInstance().currentUser?.email)
-            preFill.put("contact", "9971294004")
+            preFill.put("contact", "9654941174")
             options.put("prefill", preFill)
             co.open(activity, options)
         } catch (e: Exception) {
@@ -132,12 +133,17 @@ class CartActivity : AppCompatActivity(), PaymentResultListener {
         }
     }
     override fun onPaymentSuccess(p0: String?) {
-        cartActivityViewModel.removeItem()
-        startActivity(Intent(this,PaymentActivity::class.java).apply {
-            putExtra("amount",total)
-        })
-        finish()
-        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+        try {
+            cartActivityViewModel.removeItem()
+            startActivity(Intent(this, PaymentActivity::class.java).apply {
+                putExtra("amount", total)
+            })
+            finish()
+            Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+        }
+        catch (e: Exception) {
+            toast(e.toString())
+        }
     }
 
     override fun onPaymentError(p0: Int, p1: String?) {

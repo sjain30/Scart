@@ -195,7 +195,9 @@ class TransactionActivity : AppCompatActivity(){
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.cart) {
-            startActivity(Intent(this, CartActivity::class.java))
+            val intent = Intent(this, CartActivity::class.java)
+            intent.putExtra("shop",activity_title.text.toString())
+            startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
     }

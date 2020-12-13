@@ -43,6 +43,7 @@
         <activity android:name=".activities.ShoppingList" />
         <activity android:name=".activities.TransactionActivity" />
         <activity android:name=".activities.GoogleLoginActivity" />
+        <activity android:name=".activities.PaymentActivity"/>
         <activity
             android:name=".CaptureAct"
             android:screenOrientation="portrait"

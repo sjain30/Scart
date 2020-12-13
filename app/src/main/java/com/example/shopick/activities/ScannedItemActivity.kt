@@ -87,6 +87,14 @@ class ScannedItemActivity : AppCompatActivity() {
                     }
                     else
                         productVeg.gone()
+
+                    if(product.milk?.contains("true") == true )
+                        productMilk.text = "This products contatins milk prducts"
+                    else if(product.milk?.contains("true") == false )
+                        productMilk.text = "This products does not contatins milk prducts"
+                    else
+                        productMilk.gone()
+
                     break
                 }
             }

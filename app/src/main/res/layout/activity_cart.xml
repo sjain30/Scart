@@ -8,72 +8,75 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/cart_appbar"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:background="@android:color/transparent"
         android:fitsSystemWindows="true"
-        app:elevation="0dp">
+        app:elevation="0dp"
+        app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/cart_toolbar"
-            android:layout_width="match_parent"
-            app:title=" "
-            android:layout_height="?android:attr/actionBarSize"
-            android:background="@color/yellow_dark"
-            android:focusableInTouchMode="true"
-            app:contentInsetStartWithNavigation="0dp"
-            app:layout_collapseMode="pin"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/cart_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:background="@color/yellow_dark"
+                android:focusableInTouchMode="true"
+                app:contentInsetStartWithNavigation="0dp"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:title=" " />
 
-        <TextView
-            android:id="@+id/activity_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:fontFamily="@font/poppins_regular"
-            android:text="CART"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/activity_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/poppins_regular"
+                android:text="CART"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="16dp"-->
+    <!--        android:layout_marginBottom="64dp"-->
+    <!--        android:background="#EBEBEB"-->
+    <!--        app:layout_constraintBottom_toTopOf="@id/checkout_layout"-->
+    <!--        app:layout_constraintStart_toStartOf="parent">-->
+
+    <!--        <TextView-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_margin="16dp"-->
+    <!--            android:text="Voucher"-->
+    <!--            android:textColor="@color/black"-->
+    <!--            android:textSize="22sp"-->
+    <!--            android:textStyle="bold"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cartRecyle"
         android:layout_width="match_parent"
-        android:layout_margin="16dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/cart_appbar" />
-
-<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="16dp"-->
-<!--        android:layout_marginBottom="64dp"-->
-<!--        android:background="#EBEBEB"-->
-<!--        app:layout_constraintBottom_toTopOf="@id/checkout_layout"-->
-<!--        app:layout_constraintStart_toStartOf="parent">-->
-
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="16dp"-->
-<!--            android:text="Voucher"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="22sp"-->
-<!--            android:textStyle="bold"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+        android:layout_height="0dp"
+        android:paddingBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/shadow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cart_appbar"
+        app:layout_constraintVertical_bias="0.656" />
 
     <View
         android:id="@+id/shadow"
@@ -81,16 +84,17 @@
         android:layout_height="12dp"
         android:background="@drawable/shadow_bottom_view"
         android:visibility="visible"
-        app:layout_constraintStart_toStartOf="@+id/checkout_layout"
-        app:layout_constraintBottom_toTopOf="@+id/checkout_layout" />
+        app:layout_constraintBottom_toTopOf="@+id/checkout_layout"
+        app:layout_constraintStart_toStartOf="@+id/checkout_layout" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/checkout_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/txt_total_amount"
@@ -110,25 +114,25 @@
             android:id="@+id/txt_total_qty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0 Items"
-            app:layout_constraintStart_toStartOf="@+id/txt_total_amount"
-            app:layout_constraintTop_toBottomOf="@+id/txt_total_amount"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:textSize="16sp"/>
+            android:text="0 Items"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txt_total_amount"
+            app:layout_constraintTop_toBottomOf="@+id/txt_total_amount" />
 
         <android.widget.Button
             android:id="@+id/btn_pay"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="Pay"
-            android:background="#32CD32"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:layout_margin="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:background="#32CD32"
+            android:text="Pay"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

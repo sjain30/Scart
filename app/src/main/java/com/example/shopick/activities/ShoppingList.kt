@@ -12,6 +12,7 @@ import com.example.shopick.ShoppingListViewModel
 import com.example.shopick.datamodels.Item
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_shopping_list.*
+import kotlinx.android.synthetic.main.activity_shopping_list.view.*
 
 class ShoppingList : AppCompatActivity() {
     private var listItems = ArrayList<String>()
@@ -31,11 +32,13 @@ class ShoppingList : AppCompatActivity() {
             recycler_list.adapter = adapter
         })
 
-        edt_name.editText?.setOnKeyListener { v, keyCode, event ->
+        edt_name.editText?.setOnKeyListener { _, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN) {
                 when (keyCode) {
                     KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> {
                         shoppingListViewModel.addList(edt_name.editText?.text.toString())
+                        edt_name.editText?.setText("")
+                        edt_name.editText?.requestFocus()
                         return@setOnKeyListener true
                     }
                     else -> {
