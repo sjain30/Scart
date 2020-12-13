@@ -17,6 +17,7 @@ import com.example.shopick.utils.FirebaseUtil
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.api.Distribution
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -40,9 +41,9 @@ class SettingsViewPreferences : AppCompatActivity() {
         fetchRecyclerViewOFPreferences()
         setData()
 
-        backButton.setOnClickListener {
-            finish()
-        }
+//        backButton.setOnClickListener {
+//            finish()
+//        }
 
     }
 
@@ -58,6 +59,10 @@ class SettingsViewPreferences : AppCompatActivity() {
             override fun onBindViewHolder(holder: MyViewHolder, position: Int, model: MyPreferencesModel) {
                 holder.itemView.preference_question.text=model.question
                 holder.itemView.preferencer_ans.text=model.ans
+            }
+
+            override fun getItemCount(): Int {
+                return listOfPreferences.size
             }
 
         }

@@ -49,7 +49,7 @@ class PreferenceAdapter(private val context: Context, private val ModelArrayList
         view.choice1.setOnClickListener {
             // load data to firebase
             view.choice1.setBackgroundColor(Color.GREEN)
-            mDatabaseReference.child("${FirebaseAuth.getInstance().currentUser?.uid}").child(view.Preference.text.toString()).setValue(view.choice1.text.toString())
+            mDatabaseReference.child("${FirebaseAuth.getInstance().currentUser?.uid}").child("Preference Ques").child(view.Preference.text.toString()).child("Ans").setValue(view.choice1.text.toString())
                 .addOnSuccessListener {
                     Log.d("TAG", "addList: Success")
                     Timer().schedule(1000) {
@@ -66,7 +66,7 @@ class PreferenceAdapter(private val context: Context, private val ModelArrayList
         view.choice2.setOnClickListener {
             // load data to firebase
             view.choice2.setBackgroundColor(Color.GREEN)
-            mDatabaseReference.child("${FirebaseAuth.getInstance().currentUser?.uid}").child(view.Preference.text.toString()).setValue(view.choice2.text.toString())
+            mDatabaseReference.child("${FirebaseAuth.getInstance().currentUser?.uid}").child("Preference Ques").child(view.Preference.text.toString()).child(view.Preference.text.toString()).child("Ans").setValue(view.choice2.text.toString())
                 .addOnSuccessListener {
                     Log.d("TAG", "addList: Success")
                     Timer().schedule(1000) {
