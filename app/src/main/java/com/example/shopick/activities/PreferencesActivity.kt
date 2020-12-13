@@ -14,8 +14,6 @@ import kotlinx.android.synthetic.main.activity_preferences.*
 
 class PreferencesActivity : AppCompatActivity() {
 
-    private lateinit var action: ActionBar
-//    private val mDatabaseReference = FirebaseUtil.getDatabase().getReference("Preferences")
     private lateinit var  modelList: ArrayList<ModelPreferences>
     private lateinit var  preferenceAdapter: PreferenceAdapter
 
@@ -29,9 +27,11 @@ class PreferencesActivity : AppCompatActivity() {
 
                 override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                     positionOfCards=ViewPager.currentItem
+                    Log.d("ViewPagerCurrentItemThroughSlide","${ViewPager.currentItem}")
 //                    next.setOnClickListener {
 //                        positionOfCards+=1
 //                        ViewPager.currentItem=positionOfCards
+//
 //                    }
                 }
 
@@ -56,41 +56,6 @@ class PreferencesActivity : AppCompatActivity() {
                         }
                     }
             }
-//            previous.setOnClickListener{
-//                positionOfCards= positionOfCards-1
-//                ViewPager.currentItem=positionOfCards
-//                Log.d("ViewPagerPreviousItem","${ViewPager.currentItem}")
-//            }
-
-
-
-// handle swipe right with previous button
-//        previous.setOnClickListener{
-//            ViewPager.currentItem = ViewPager.currentItem-1
-//            Log.d("ViewPagerPreviousItem","${ViewPager.currentItem}")
-//        }
-
-//        while (ViewPager.currentItem<=modelList.size-1){
-//            choice1.setOnClickListener {
-//                // load data to firebase
-//                mDatabaseReference.child("${FirebaseAuth.getInstance().currentUser?.uid}").child(Preference.text.toString()).setValue(choice1.text.toString())
-//                    .addOnSuccessListener {
-//                        Log.d("TAG", "addList: Success")
-//                    }
-//                    .addOnFailureListener {
-//                        Log.d("TAG", "addList: ${it.toString()}")
-//                    }
-//            }
-//            choice2.setOnClickListener {
-//                // load data to firebase
-//                mDatabaseReference.child("${FirebaseAuth.getInstance().currentUser?.uid}").child(Preference.text.toString()).setValue(choice2.text.toString())
-//                    .addOnSuccessListener {
-//                        Log.d("TAG", "addList: Success")
-//                    }
-//                    .addOnFailureListener {
-//                        Log.d("TAG", "addList: ${it.toString()}")
-//                    }
-//            }
 
     }
 
