@@ -20,6 +20,7 @@
         android:roundIcon="@mipmap/ic_launcher_scart_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Shopick">
+        <activity android:name=".activities.ErrorActivity"></activity>
         <activity android:name=".activities.MyProfileActivity" />
         <activity android:name=".activities.SettingsViewPreferences" />
         <activity
@@ -43,7 +44,7 @@
         <activity android:name=".activities.ShoppingList" />
         <activity android:name=".activities.TransactionActivity" />
         <activity android:name=".activities.GoogleLoginActivity" />
-        <activity android:name=".activities.PaymentActivity"/>
+        <activity android:name=".activities.PaymentActivity" />
         <activity
             android:name=".CaptureAct"
             android:screenOrientation="portrait"

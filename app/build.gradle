@@ -137,5 +137,7 @@ dependencies {
 
     // FirebaseUI for Cloud Storage
     implementation 'com.firebaseui:firebase-ui-storage:7.1.1'
+    //Custom crash screen
+    implementation 'cat.ereza:customactivityoncrash:2.3.0'
 
 }

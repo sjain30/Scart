@@ -2,6 +2,8 @@ package com.example.shopick
 
 import android.app.Activity
 import androidx.multidex.MultiDexApplication
+import cat.ereza.customactivityoncrash.config.CaocConfig
+import com.example.shopick.activities.ErrorActivity
 import com.example.shopick.dagger.DaggerShopickComponent
 import com.example.shopick.dagger.ShopickComponent
 
@@ -25,5 +27,10 @@ class ShopickApplication : MultiDexApplication() {
         super.onCreate()
 
         shopickComponent = DaggerShopickComponent.create()
+        //Custom Crash
+        CaocConfig.Builder.create()
+            .trackActivities(true)
+            .errorActivity(ErrorActivity::class.java)
+            .apply()
     }
 }
